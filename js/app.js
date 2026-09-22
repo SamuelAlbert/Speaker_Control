@@ -187,10 +187,6 @@
       return null;
     }
 
-    renderizarCarta(pdfSource, dados);
-    ajustarCartaUmaPagina(pdfSource);
-
-    const element = pdfSource.querySelector(".carta-documento");
     ultimoPdfNome = nomeArquivoPdf(dados);
 
     btnGerar.disabled = true;
@@ -198,7 +194,19 @@
     const textoOriginal = btnGerar.textContent;
     btnGerar.textContent = "Gerando PDF…";
 
+    let elementoCaptura = null;
+    let alvo = null;
+
     try {
+      window.scrollTo(0, 0);
+
+      elementoCaptura = document.createElement("div");
+      elementoCaptura.className = "pdf-captura-host";
+      elementoCaptura.innerHTML = buildCartaHtml(dados);
+      document.body.appendChild(elementoCaptura);
+      ajustarCartaUmaPagina(elementoCaptura);
+      alvo = elementoCaptura.querySelector(".carta-documento");
+
       const opcoesPdf = {
         margin: [0, 0, 0, 0],
         filename: ultimoPdfNome,
@@ -207,15 +215,15 @@
           scale: 2,
           useCORS: true,
           logging: false,
+          backgroundColor: "#ffffff",
           scrollX: 0,
           scrollY: 0,
-          windowWidth: element.scrollWidth,
         },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      const worker = html2pdf().set(opcoesPdf).from(element);
+      const worker = html2pdf().set(opcoesPdf).from(alvo);
       const blob = await worker.outputPdf("blob");
       ultimoPdfBlob = blob;
 
@@ -234,10 +242,15 @@
       mostrarErro("Não foi possível gerar o PDF. Tente novamente ou use outro navegador.");
       return null;
     } finally {
+      if (elementoCaptura && elementoCaptura.parentNode) {
+        elementoCaptura.parentNode.removeChild(elementoCaptura);
+      }
       btnGerar.disabled = getDiscursosOrdenados().length === 0;
       btnVisualizar.disabled = getDiscursosOrdenados().length === 0;
       btnGerar.textContent = textoOriginal;
-      element.style.fontSize = "";
+      if (alvo) {
+        alvo.style.fontSize = "";
+      }
     }
   }
 

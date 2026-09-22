@@ -392,21 +392,31 @@ body {
   margin-top: 0.45rem !important;
 }
 
-/* Área oculta para captura PDF */
+/* Área para captura PDF (precisa ficar em 0,0 — posição negativa corta o html2canvas) */
 #pdf-source {
   position: fixed;
-  left: -12000px;
+  left: 0;
   top: 0;
   width: 210mm;
+  max-width: 210mm;
+  min-height: 297mm;
   z-index: -1;
-  opacity: 0.01;
+  opacity: 0;
   pointer-events: none;
+  overflow: hidden;
+  background: #fff;
 }
 
 #pdf-source .carta-documento {
+  width: 210mm;
+  max-width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  margin: 0;
   padding: 12mm 14mm 10mm;
   font-size: 9.8pt;
   line-height: 1.38;
+  background: #fff;
 }
 
 #pdf-source .carta-titulo {
@@ -423,6 +433,49 @@ body {
 }
 
 #pdf-source .carta-assinatura p {
+  margin: 0 0 0.15rem;
+  font-size: 9.5pt;
+}
+
+/* Elemento temporário na captura do PDF (mesmo layout do #pdf-source) */
+.pdf-captura-host {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 210mm;
+  max-width: 210mm;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #fff;
+}
+
+.pdf-captura-host .carta-documento {
+  width: 210mm;
+  max-width: 210mm;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12mm 14mm 10mm;
+  font-size: 9.8pt;
+  line-height: 1.38;
+  background: #fff;
+}
+
+.pdf-captura-host .carta-titulo {
+  font-size: 11pt;
+  margin: 0.5rem 0 0.65rem;
+}
+
+.pdf-captura-host .carta-corpo p {
+  margin: 0 0 0.42rem;
+}
+
+.pdf-captura-host .carta-assinatura {
+  margin-top: 0.5rem;
+}
+
+.pdf-captura-host .carta-assinatura p {
   margin: 0 0 0.15rem;
   font-size: 9.5pt;
 }
