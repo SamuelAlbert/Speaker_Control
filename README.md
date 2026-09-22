@@ -92,12 +92,18 @@ Edite a função **`buildCartaHtml`** em **`js/carta.js`**. Mantenha os placehol
 │   ├── carta.js         # HTML da carta
 │   ├── congregacao.js   # Dados fixos Bagueira
 │   └── discursos.js     # Lista oficial de discursos
+├── vendor/
+│   └── html2pdf.bundle.min.js
 └── README.md
 ```
 
+## Biblioteca PDF
+
+A geração de PDF usa **html2pdf.js** (v0.10.1), incluída em **`vendor/html2pdf.bundle.min.js`**, para funcionar offline e sem depender de CDN.
+
 ## Privacidade
 
-Os dados preenchidos são processados apenas no navegador. Nada é enviado a servidores da aplicação (exceto o carregamento da biblioteca PDF via CDN, na primeira visita).
+Os dados preenchidos são processados apenas no navegador. Nada é enviado a servidores da aplicação.
 
 ## Compartilhar PDF no celular
 
