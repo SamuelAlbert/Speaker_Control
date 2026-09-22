@@ -56,7 +56,7 @@ function buildCartaHtml(dados) {
           <p class="carta-campo"><strong>DATA:</strong> ${data}</p>
         </div>
 
-        <p>Caso o irmão indicado não possa atender ao convite, pedimos, por favor, que nos informem assim que possível e, se viável, providenciem outro irmão habilitado para substituí-lo.</p>
+        <p>Caso o irmão indicado não possa atender ao convite, pedimos, por favor, que nos informem assim que possível.</p>
 
         <p>Se houver alguma dificuldade em apresentar o tema indicado, solicitamos também que nos comuniquem com antecedência, para que possamos fazer os ajustes necessários.</p>
 
