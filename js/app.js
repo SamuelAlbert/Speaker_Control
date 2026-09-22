@@ -218,6 +218,8 @@
           backgroundColor: "#ffffff",
           scrollX: 0,
           scrollY: 0,
+          letterRendering: false,
+          foreignObjectRendering: false,
         },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },

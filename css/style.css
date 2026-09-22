@@ -313,16 +313,24 @@ body {
   font-size: 9.5pt;
 }
 
+.folha-a4.folha-a4--espelho-pdf .carta-documento,
+.folha-a4.folha-a4--espelho-pdf .carta-corpo p {
+  text-align: left;
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
 /* Carta (prévia e PDF) */
 .carta-documento {
   padding: 14mm 16mm 12mm;
   font-size: 10.5pt;
   line-height: 1.45;
   color: #000;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
+  hyphens: manual;
   word-wrap: break-word;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .carta-cabecalho {
@@ -449,6 +457,7 @@ body {
   pointer-events: none;
   overflow: hidden;
   background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .pdf-captura-host .carta-documento {
@@ -458,8 +467,13 @@ body {
   margin: 0;
   padding: 12mm 14mm 10mm;
   font-size: 9.8pt;
-  line-height: 1.38;
+  line-height: 1.42;
   background: #fff;
+  text-align: left;
+  hyphens: manual;
+  overflow-wrap: break-word;
+  word-break: normal;
+  -webkit-font-smoothing: antialiased;
 }
 
 .pdf-captura-host .carta-titulo {
@@ -469,6 +483,7 @@ body {
 
 .pdf-captura-host .carta-corpo p {
   margin: 0 0 0.42rem;
+  text-align: left;
 }
 
 .pdf-captura-host .carta-assinatura {
